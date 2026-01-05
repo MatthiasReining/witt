@@ -1,4 +1,4 @@
-# WITT - Where is the Time?
+# WITT - Where Is The Time?
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
