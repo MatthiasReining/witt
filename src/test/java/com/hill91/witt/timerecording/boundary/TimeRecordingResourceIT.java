@@ -1,4 +1,4 @@
-package com.hill91.wist.timerecording.boundary;
+package com.hill91.witt.timerecording.boundary;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 

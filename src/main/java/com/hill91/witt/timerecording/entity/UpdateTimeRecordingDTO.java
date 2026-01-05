@@ -1,4 +1,4 @@
-package com.hill91.wist.timerecording.entity;
+package com.hill91.witt.timerecording.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;

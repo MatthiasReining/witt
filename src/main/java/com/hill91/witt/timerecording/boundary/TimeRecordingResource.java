@@ -1,12 +1,12 @@
-package com.hill91.wist.timerecording.boundary;
+package com.hill91.witt.timerecording.boundary;
 
 import java.net.URI;
 import java.util.List;
 
-import com.hill91.wist.timerecording.control.TimeRecordingService;
-import com.hill91.wist.timerecording.entity.CreateTimeRecordingDTO;
-import com.hill91.wist.timerecording.entity.TimeRecordingDTO;
-import com.hill91.wist.timerecording.entity.UpdateTimeRecordingDTO;
+import com.hill91.witt.timerecording.control.TimeRecordingService;
+import com.hill91.witt.timerecording.entity.CreateTimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.TimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.UpdateTimeRecordingDTO;
 
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;

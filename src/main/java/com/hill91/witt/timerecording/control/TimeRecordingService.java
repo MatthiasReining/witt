@@ -1,12 +1,12 @@
-package com.hill91.wist.timerecording.control;
+package com.hill91.witt.timerecording.control;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.hill91.wist.timerecording.entity.CreateTimeRecordingDTO;
-import com.hill91.wist.timerecording.entity.TimeRecording;
-import com.hill91.wist.timerecording.entity.TimeRecordingDTO;
-import com.hill91.wist.timerecording.entity.UpdateTimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.CreateTimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.TimeRecording;
+import com.hill91.witt.timerecording.entity.TimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.UpdateTimeRecordingDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;

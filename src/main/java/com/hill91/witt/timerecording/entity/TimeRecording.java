@@ -1,4 +1,4 @@
-package com.hill91.wist.timerecording.entity;
+package com.hill91.witt.timerecording.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
