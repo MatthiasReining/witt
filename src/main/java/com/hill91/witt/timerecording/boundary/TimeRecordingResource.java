@@ -4,9 +4,9 @@ import java.net.URI;
 import java.util.List;
 
 import com.hill91.witt.timerecording.control.TimeRecordingService;
-import com.hill91.witt.timerecording.entity.CreateTimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.TimeRecordingCreateDTO;
 import com.hill91.witt.timerecording.entity.TimeRecordingDTO;
-import com.hill91.witt.timerecording.entity.UpdateTimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.TimeRecordingUpdateDTO;
 
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
@@ -36,7 +36,7 @@ public class TimeRecordingResource {
     }
 
     @POST
-    public Response createTimeRecording(@Valid CreateTimeRecordingDTO dto) {
+    public Response createTimeRecording(@Valid TimeRecordingCreateDTO dto) {
         TimeRecordingDTO created = timeRecordingService.createTimeRecording(dto);
         return Response.created(URI.create("/time-recording/" + created.id))
                 .entity(created)
@@ -45,7 +45,7 @@ public class TimeRecordingResource {
 
     @PUT
     @Path("/{id}")
-    public TimeRecordingDTO updateTimeRecording(@PathParam("id") Long id, @Valid UpdateTimeRecordingDTO dto) {
+    public TimeRecordingDTO updateTimeRecording(@PathParam("id") Long id, @Valid TimeRecordingUpdateDTO dto) {
         return timeRecordingService.updateTimeRecording(id, dto);
     }
 

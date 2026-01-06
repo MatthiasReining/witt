@@ -1,6 +1,7 @@
 package com.hill91.witt.timerecording.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -10,10 +11,12 @@ import java.time.LocalDateTime;
 @Table(name = "time_recording")
 public class TimeRecording extends PanacheEntity {
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public String description;
 
-    @Column(name = "start_time", nullable = false)
+    @Column(name = "start_time")
+    @NotNull
     public LocalDateTime startTime;
 
     @Column(name = "end_time")
@@ -22,7 +25,8 @@ public class TimeRecording extends PanacheEntity {
     @Column(name = "project_name")
     public String projectName;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
+    @NotNull
     public LocalDateTime createdAt;
 
     @Column(name = "updated_at")

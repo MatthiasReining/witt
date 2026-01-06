@@ -3,10 +3,10 @@ package com.hill91.witt.timerecording.control;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.hill91.witt.timerecording.entity.CreateTimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.TimeRecordingCreateDTO;
 import com.hill91.witt.timerecording.entity.TimeRecording;
 import com.hill91.witt.timerecording.entity.TimeRecordingDTO;
-import com.hill91.witt.timerecording.entity.UpdateTimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.TimeRecordingUpdateDTO;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -33,7 +33,7 @@ public class TimeRecordingService {
     }
 
     @Transactional
-    public TimeRecordingDTO createTimeRecording(CreateTimeRecordingDTO dto) {
+    public TimeRecordingDTO createTimeRecording(TimeRecordingCreateDTO dto) {
         TimeRecording recording = mapper.toEntity(dto);
         recording.createdAt = LocalDateTime.now();
         recording.persist();
@@ -41,7 +41,7 @@ public class TimeRecordingService {
     }
 
     @Transactional
-    public TimeRecordingDTO updateTimeRecording(Long id, UpdateTimeRecordingDTO dto) {
+    public TimeRecordingDTO updateTimeRecording(Long id, TimeRecordingUpdateDTO dto) {
         TimeRecording recording = TimeRecording.findById(id);
         if (recording == null) {
             throw new NotFoundException("Time recording with id " + id + " not found");

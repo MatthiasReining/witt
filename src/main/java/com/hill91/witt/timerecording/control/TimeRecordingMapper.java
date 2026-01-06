@@ -1,9 +1,9 @@
 package com.hill91.witt.timerecording.control;
 
-import com.hill91.witt.timerecording.entity.CreateTimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.TimeRecordingCreateDTO;
 import com.hill91.witt.timerecording.entity.TimeRecording;
 import com.hill91.witt.timerecording.entity.TimeRecordingDTO;
-import com.hill91.witt.timerecording.entity.UpdateTimeRecordingDTO;
+import com.hill91.witt.timerecording.entity.TimeRecordingUpdateDTO;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -22,7 +22,7 @@ public interface TimeRecordingMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    TimeRecording toEntity(CreateTimeRecordingDTO dto);
+    TimeRecording toEntity(TimeRecordingCreateDTO dto);
 
-    void updateEntityFromDto(UpdateTimeRecordingDTO dto, @MappingTarget TimeRecording entity);
+    void updateEntityFromDto(TimeRecordingUpdateDTO dto, @MappingTarget TimeRecording entity);
 }
