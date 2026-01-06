@@ -7,18 +7,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class TimeRecordingCreateDTO {
-
-    @NotBlank(message = "Description is required")
-    public String description;
-
-    @NotNull(message = "Start time is required")
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    public LocalDateTime startTime;
-
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    public LocalDateTime endTime;
-
-    public String projectName;
-
+public record TimeRecordingCreateDTO(
+        @NotBlank(message = "Description is required") String description,
+        @NotNull(message = "Start time is required") @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startTime,
+        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endTime,
+        String projectName) {
 }
