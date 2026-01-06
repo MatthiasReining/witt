@@ -38,7 +38,7 @@ public class TimeRecordingResource {
     @POST
     public Response createTimeRecording(@Valid TimeRecordingCreateDTO dto) {
         TimeRecordingDTO created = timeRecordingService.createTimeRecording(dto);
-        return Response.created(URI.create("/time-recording/" + created.id))
+        return Response.created(URI.create("/time-recording/" + created.id()))
                 .entity(created)
                 .build();
     }

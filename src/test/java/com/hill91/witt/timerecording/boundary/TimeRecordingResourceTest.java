@@ -2,6 +2,7 @@ package com.hill91.witt.timerecording.boundary;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -11,6 +12,28 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
 @QuarkusTest
 class TimeRecordingResourceTest {
+
+    private static Long testWorkerId;
+
+    @BeforeAll
+    static void setupTestData() {
+        // Create a worker for testing
+        String workerBody = """
+                {
+                    "username": "test.worker",
+                    "firstName": "Test",
+                    "lastName": "Worker"
+                }
+                """;
+
+        testWorkerId = given()
+                .contentType(ContentType.JSON)
+                .body(workerBody)
+                .when().post("/worker")
+                .then()
+                .statusCode(201)
+                .extract().jsonPath().getLong("id");
+    }
 
     @Test
     void testGetAllTimeRecordings() {
@@ -24,14 +47,15 @@ class TimeRecordingResourceTest {
 
     @Test
     void testCreateTimeRecording() {
-        String requestBody = """
+        String requestBody = String.format("""
                 {
+                    "workerId": %d,
                     "description": "Test recording",
                     "startTime": "2025-12-28T09:00:00",
                     "endTime": "2025-12-28T10:00:00",
                     "projectName": "Test Project"
                 }
-                """;
+                """, testWorkerId);
 
         given()
                 .contentType(ContentType.JSON)
@@ -47,12 +71,13 @@ class TimeRecordingResourceTest {
 
     @Test
     void testCreateTimeRecordingWithoutDescription() {
-        String requestBody = """
+        String requestBody = String.format("""
                 {
+                    "workerId": %d,
                     "startTime": "2025-12-28T09:00:00",
                     "endTime": "2025-12-28T10:00:00"
                 }
-                """;
+                """, testWorkerId);
 
         given()
                 .contentType(ContentType.JSON)
@@ -64,12 +89,13 @@ class TimeRecordingResourceTest {
 
     @Test
     void testCreateTimeRecordingWithoutStartTime() {
-        String requestBody = """
+        String requestBody = String.format("""
                 {
+                    "workerId": %d,
                     "description": "Test recording",
                     "endTime": "2025-12-28T10:00:00"
                 }
-                """;
+                """, testWorkerId);
 
         given()
                 .contentType(ContentType.JSON)
@@ -82,14 +108,15 @@ class TimeRecordingResourceTest {
     @Test
     void testGetTimeRecordingById() {
         // First create a time recording
-        String requestBody = """
+        String requestBody = String.format("""
                 {
+                    "workerId": %d,
                     "description": "Test recording",
                     "startTime": "2025-12-28T09:00:00",
                     "endTime": "2025-12-28T10:00:00",
                     "projectName": "Test Project"
                 }
-                """;
+                """, testWorkerId);
 
         Long id = given()
                 .contentType(ContentType.JSON)
@@ -111,14 +138,15 @@ class TimeRecordingResourceTest {
     @Test
     void testUpdateTimeRecording() {
         // First create a time recording
-        String createBody = """
+        String createBody = String.format("""
                 {
+                    "workerId": %d,
                     "description": "Original description",
                     "startTime": "2025-12-28T09:00:00",
                     "endTime": "2025-12-28T10:00:00",
                     "projectName": "Original Project"
                 }
-                """;
+                """, testWorkerId);
 
         Long id = given()
                 .contentType(ContentType.JSON)
@@ -152,14 +180,15 @@ class TimeRecordingResourceTest {
     @Test
     void testDeleteTimeRecording() {
         // First create a time recording
-        String requestBody = """
+        String requestBody = String.format("""
                 {
+                    "workerId": %d,
                     "description": "Test recording to delete",
                     "startTime": "2025-12-28T09:00:00",
                     "endTime": "2025-12-28T10:00:00",
                     "projectName": "Test Project"
                 }
-                """;
+                """, testWorkerId);
 
         Long id = given()
                 .contentType(ContentType.JSON)

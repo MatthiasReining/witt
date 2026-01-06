@@ -8,8 +8,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record TimeRecordingCreateDTO(
-        @NotBlank(message = "Description is required") String description,
-        @NotNull(message = "Start time is required") @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startTime,
-        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endTime,
-        String projectName) {
+                @NotNull(message = "Worker ID is required") Long workerId,
+                @NotBlank(message = "Description is required") String description,
+                @NotNull(message = "Start time is required") @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startTime,
+                @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endTime,
+                String projectName) {
 }

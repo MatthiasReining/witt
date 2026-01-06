@@ -1,15 +1,23 @@
 package com.hill91.witt.timerecording.entity;
 
+import com.hill91.witt.worker.entity.Worker;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "time_recording")
 public class TimeRecording extends PanacheEntity {
+
+    @ManyToOne
+    @JoinColumn(name = "worker_id")
+    @NotNull
+    public Worker worker;
 
     @Column
     @NotNull

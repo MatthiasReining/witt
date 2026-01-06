@@ -3,6 +3,7 @@ package com.hill91.witt.timerecording.control;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.hill91.witt.worker.entity.Worker;
 import com.hill91.witt.timerecording.entity.TimeRecordingCreateDTO;
 import com.hill91.witt.timerecording.entity.TimeRecording;
 import com.hill91.witt.timerecording.entity.TimeRecordingDTO;
@@ -34,7 +35,13 @@ public class TimeRecordingService {
 
     @Transactional
     public TimeRecordingDTO createTimeRecording(TimeRecordingCreateDTO dto) {
+        Worker worker = Worker.findById(dto.workerId());
+        if (worker == null) {
+            throw new NotFoundException("Worker with id " + dto.workerId() + " not found");
+        }
+
         TimeRecording recording = mapper.toEntity(dto);
+        recording.worker = worker;
         recording.createdAt = LocalDateTime.now();
         recording.persist();
         return mapper.toDto(recording);
@@ -45,6 +52,14 @@ public class TimeRecordingService {
         TimeRecording recording = TimeRecording.findById(id);
         if (recording == null) {
             throw new NotFoundException("Time recording with id " + id + " not found");
+        }
+
+        if (dto.workerId() != null) {
+            Worker worker = Worker.findById(dto.workerId());
+            if (worker == null) {
+                throw new NotFoundException("Worker with id " + dto.workerId() + " not found");
+            }
+            recording.worker = worker;
         }
 
         mapper.updateEntityFromDto(dto, recording);
